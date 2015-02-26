@@ -14,6 +14,8 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 	var selectedImageView: UIImageView!
 	var movingImageView: UIImageView!
 	var blackView: UIView!
+	var duration: NSTimeInterval!
+
 
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var feedScrollView: UIScrollView!
@@ -22,8 +24,11 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+		duration = 2
+		
         feedScrollView.contentSize = feedImageView.frame.size
+		
+		
         
     }
 
@@ -44,7 +49,7 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 	
 	func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
 		// The value here should be the duration of the animations scheduled in the animationTransition method
-		return 0.4
+		return duration
 	}
 	
 	func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -53,11 +58,7 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 		var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
 		var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
 		
-		// this is creating and setting the properties of the copy
-		movingImageView = UIImageView(frame: selectedImageView.frame)
-		movingImageView.image = selectedImageView.image
-		movingImageView.contentMode = selectedImageView.contentMode
-		movingImageView.clipsToBounds = selectedImageView.clipsToBounds
+		
 
 		
 		if (isPresenting) {
@@ -70,31 +71,57 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 			
 			//add toViewController to containerView
 			containerView.addSubview(toViewController.view)
-			toViewController.view.alpha = 0
+//			toViewController.view.alpha = 0
+			
+			// this is creating and setting the properties of the copy
+			movingImageView = UIImageView(frame: selectedImageView.frame)
+			movingImageView.image = selectedImageView.image
+			movingImageView.contentMode = selectedImageView.contentMode
+			movingImageView.clipsToBounds = selectedImageView.clipsToBounds
+			
+
+			
+			
+			// NEW STUFF -- this adds the movingImageView to the destination view controller
+			// Give us your main window and let us do stuff there, it's above everything else in layer order
+			
+			var window = UIApplication.sharedApplication().keyWindow!
+			window.addSubview(movingImageView)
+			
+
+			var photoViewController = toViewController as PhotoViewController
+			var finalImageView = photoViewController.imageView
+			finalImageView.alpha = 0
 			
 		
-			UIView.animateWithDuration(0.4, animations: { () -> Void in
-				toViewController.view.alpha = 1
+			UIView.animateWithDuration(duration, animations: { () -> Void in
+//				toViewController.view.alpha = 1
 				self.blackView.alpha = 1
+				self.movingImageView.frame = finalImageView.frame
+
 				}) { (finished: Bool) -> Void in
+					finalImageView.alpha = 0
 					transitionContext.completeTransition(true)
+//					self.movingImageView.removeFromSuperview()
+//					toViewController.view.removeFromSuperview()
 			}
 		} else {
-			UIView.animateWithDuration(0.4, animations: { () -> Void in
+
+			UIView.animateWithDuration(duration, animations: { () -> Void in
 				fromViewController.view.alpha = 0
+
 				self.blackView.alpha = 0
+				self.movingImageView.frame = self.selectedImageView.frame
+
 				}) { (finished: Bool) -> Void in
 					transitionContext.completeTransition(true)
+					self.movingImageView.removeFromSuperview()
 					fromViewController.view.removeFromSuperview()
 			}
 		}
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-		var destinationVC = segue.destinationViewController as UIViewController
-		destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
-		destinationVC.transitioningDelegate = self
-		
 		// this creates a generic view controller, but then CASTS it as the detail view controller. Casting allows you to access all the IB outlets and variables of the destination view controller that you named.
 		var destinationViewController = segue.destinationViewController as PhotoViewController
 		destinationViewController.fullSizeImage = selectedImageView.image
