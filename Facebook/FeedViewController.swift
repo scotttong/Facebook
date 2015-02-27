@@ -15,27 +15,25 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 	var movingImageView: UIImageView!
 	var blackView: UIView!
 	var duration: NSTimeInterval!
-
-
-    @IBOutlet weak var feedImageView: UIImageView!
-    @IBOutlet weak var feedScrollView: UIScrollView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-		duration = 2
+	
+	
+	@IBOutlet weak var feedImageView: UIImageView!
+	@IBOutlet weak var feedScrollView: UIScrollView!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
-        feedScrollView.contentSize = feedImageView.frame.size
+		// Do any additional setup after loading the view.
+		duration = 0.5
 		
+		feedScrollView.contentSize = feedImageView.frame.size
 		
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
 	
 	func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
 		isPresenting = true
@@ -54,69 +52,67 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 	
 	func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 		println("animating transition")
+		
 		var containerView = transitionContext.containerView()
 		var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
 		var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+	
+		
+		// this is creating and setting the properties of the copy
+		movingImageView = UIImageView(frame: selectedImageView.frame)
+		movingImageView.image = selectedImageView.image
+		movingImageView.contentMode = selectedImageView.contentMode
+		movingImageView.clipsToBounds = selectedImageView.clipsToBounds
 		
 		
+		
+		
+		// NEW STUFF -- this adds the movingImageView to the destination view controller
+		// Give us your main window and let us do stuff there, it's above everything else in layer order
+		
+		var window = UIApplication.sharedApplication().keyWindow!
+		window.addSubview(movingImageView)
 
+		
 		
 		if (isPresenting) {
-
+			
 			//add black background
 			blackView = UIView(frame: fromViewController.view.frame)
 			blackView.backgroundColor = UIColor.blackColor()
 			blackView.alpha = 0
+			
 			containerView.addSubview(blackView)
-			
-			//add toViewController to containerView
 			containerView.addSubview(toViewController.view)
-//			toViewController.view.alpha = 0
+			toViewController.view.alpha = 0
 			
-			// this is creating and setting the properties of the copy
-			movingImageView = UIImageView(frame: selectedImageView.frame)
-			movingImageView.image = selectedImageView.image
-			movingImageView.contentMode = selectedImageView.contentMode
-			movingImageView.clipsToBounds = selectedImageView.clipsToBounds
-			
-
-			
-			
-			// NEW STUFF -- this adds the movingImageView to the destination view controller
-			// Give us your main window and let us do stuff there, it's above everything else in layer order
-			
-			var window = UIApplication.sharedApplication().keyWindow!
-			window.addSubview(movingImageView)
-			
-
 			var photoViewController = toViewController as PhotoViewController
-			var finalImageView = photoViewController.imageView
+			var finalImageView = photoViewController.zoomedInPhotoContainer
 			finalImageView.alpha = 0
 			
-		
+			
 			UIView.animateWithDuration(duration, animations: { () -> Void in
-//				toViewController.view.alpha = 1
+				toViewController.view.alpha = 1
 				self.blackView.alpha = 1
 				self.movingImageView.frame = finalImageView.frame
-
+				
 				}) { (finished: Bool) -> Void in
 					finalImageView.alpha = 0
 					transitionContext.completeTransition(true)
-//					self.movingImageView.removeFromSuperview()
-//					toViewController.view.removeFromSuperview()
+					//					self.movingImageView.removeFromSuperview()
+					//					toViewController.view.removeFromSuperview()
 			}
 		} else {
-
+			
 			UIView.animateWithDuration(duration, animations: { () -> Void in
 				fromViewController.view.alpha = 0
-
+				
 				self.blackView.alpha = 0
-				self.movingImageView.frame = self.selectedImageView.frame
-
+				
 				}) { (finished: Bool) -> Void in
 					transitionContext.completeTransition(true)
-					self.movingImageView.removeFromSuperview()
 					fromViewController.view.removeFromSuperview()
+					self.blackView.removeFromSuperview()
 			}
 		}
 	}
@@ -128,7 +124,7 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 		
 		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
 		destinationViewController.transitioningDelegate = self
-
+		
 		
 	}
 	
@@ -140,6 +136,6 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 	}
 	
 	
-
+	
 	
 }

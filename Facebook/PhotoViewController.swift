@@ -11,13 +11,14 @@ import UIKit
 class PhotoViewController: UIViewController {
 	
 	
-	@IBOutlet weak var imageView: UIImageView!
+
+	@IBOutlet weak var zoomedInPhotoContainer: UIImageView!
 	var fullSizeImage: UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		imageView.image = fullSizeImage
+		zoomedInPhotoContainer.image = fullSizeImage
 
         // Do any additional setup after loading the view.
     }
