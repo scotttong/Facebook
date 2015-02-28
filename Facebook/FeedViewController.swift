@@ -82,6 +82,7 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 			
 			var window = UIApplication.sharedApplication().keyWindow!
 			window.addSubview(movingImageView)
+			
 
 			
 			var photoViewController = toViewController as PhotoViewController
@@ -89,12 +90,13 @@ class FeedViewController: UIViewController, UIViewControllerTransitioningDelegat
 			finalImageView.alpha = 0
 			
 			
+			
 			UIView.animateWithDuration(duration, animations: { () -> Void in
-				toViewController.view.alpha = 1
+
 				self.blackView.alpha = 1
 				self.movingImageView.frame = finalImageView.frame
 				println("presenting\(self.movingImageView.frame)")
-
+				toViewController.view.alpha = 1
 				
 				}) { (finished: Bool) -> Void in
 					finalImageView.alpha = 0
