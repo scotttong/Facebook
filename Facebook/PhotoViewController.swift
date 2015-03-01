@@ -37,6 +37,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
 	func scrollViewDidScroll(scrollView: UIScrollView!) {
 		scrollMove = photoScrollView.contentOffset.y
 		photoScrollView.backgroundColor = UIColor(white: 0, alpha: ((100-abs(scrollMove))/100))
+		
 	}
 	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
@@ -48,9 +49,11 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
 		doneButtonImage.hidden = false
 		actionsBar.hidden = false
 		
-		// If we scroll more than the 100 points, perform the dismiss action
-		if (scrollMove > 100 || scrollMove < -100) {
+		// If we scroll more than the 50 points, perform the dismiss action
+		if (scrollMove > 50 || scrollMove < -50) {
+			println("dismissing")
 			dismissViewControllerAnimated(true, completion: nil)
+			zoomedInPhotoContainer.hidden = true
 		} else {
 			photoScrollView.contentOffset.y = 0
 		}
