@@ -28,6 +28,9 @@ class PhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+	@IBAction func onPan(sender: UIPanGestureRecognizer) {
+		println("panning")
+	}
 
 	@IBAction func didPressDoneButton(sender: AnyObject) {
 		dismissViewControllerAnimated(true, completion: nil)
