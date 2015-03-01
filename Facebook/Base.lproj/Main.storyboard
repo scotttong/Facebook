@@ -90,16 +90,6 @@
                                         <rect key="frame" x="0.0" y="109" width="320" height="1438"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ovv-YQ-Ilb">
-                                        <rect key="frame" x="20" y="789" width="278" height="210"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Q9k-En-wOT" kind="push" id="8aX-6S-Wkz"/>
-                                        </connections>
-                                    </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="wedding1" id="ven-Tm-5dW">
                                         <rect key="frame" x="4" y="192" width="154" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -117,7 +107,7 @@
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="wedding3" id="TKi-Ro-GCg">
-                                        <rect key="frame" x="163" y="191" width="154" height="102"/>
+                                        <rect key="frame" x="160" y="192" width="154" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -125,7 +115,7 @@
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="wedding4" id="clQ-KY-kyT">
-                                        <rect key="frame" x="163" y="296" width="154" height="102"/>
+                                        <rect key="frame" x="162" y="297" width="154" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -133,7 +123,7 @@
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="wedding5" id="SrS-eK-gKX">
-                                        <rect key="frame" x="163" y="402" width="154" height="102"/>
+                                        <rect key="frame" x="162" y="402" width="154" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -189,68 +179,6 @@
             </objects>
             <point key="canvasLocation" x="276" y="1470"/>
         </scene>
-        <!--Thrillist Detail View Controller-->
-        <scene sceneID="uwH-7S-9p9">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Q9k-En-wOT" customClass="ThrillistDetailViewController" customModule="Facebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yJ3-eA-FAo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_back" id="EMg-lH-ksG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="MI6-e6-1bC">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thrillist_detail" id="DEe-rw-5mF">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1203"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="r9p-dp-wr0">
-                                        <rect key="frame" x="11" y="356" width="72" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <state key="normal" title=" like" image="like_btn">
-                                            <color key="titleColor" red="0.54509803921568623" green="0.55294117647058827" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="like_btn_selected">
-                                            <color key="titleColor" red="0.28390592339999998" green="0.5808320642" blue="0.99861925839999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didPressLikeButton:" destination="Q9k-En-wOT" eventType="touchUpInside" id="YRl-Ma-aiK"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jmr-Gc-FVY">
-                                <rect key="frame" x="11" y="26" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="Q9k-En-wOT" eventType="touchUpInside" id="i5f-Fs-IP5"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="jWc-xy-NZA"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="likeButton" destination="r9p-dp-wr0" id="73J-hl-eMh"/>
-                        <outlet property="thrillistImageView" destination="DEe-rw-5mF" id="oh1-a4-eYU"/>
-                        <outlet property="thrillistScrollView" destination="MI6-e6-1bC" id="rYg-Vm-x9G"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1eN-ya-jLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-96" y="2218"/>
-        </scene>
         <!--Photo View Controller-->
         <scene sceneID="p9z-3g-ERC">
             <objects>
@@ -267,9 +195,6 @@
                                         <rect key="frame" x="0.0" y="45" width="320" height="480"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="F22-1Q-QhO" appends="YES" id="foT-1g-7AS"/>
-                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -293,19 +218,16 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="actionsBar" destination="ZsS-uJ-apj" id="xtb-a4-S1o"/>
+                        <outlet property="doneButtonImage" destination="vum-eO-BMq" id="UTm-E2-kQ0"/>
+                        <outlet property="photoScrollView" destination="59W-nn-kbX" id="0fC-nu-wmQ"/>
                         <outlet property="zoomedInPhotoContainer" destination="l25-qg-eQD" id="5I2-bI-GkE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NE9-Ch-Zpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="F22-1Q-QhO">
-                    <connections>
-                        <action selector="onPan:" destination="hev-f2-oVH" id="Yb4-jl-z2Q"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="276" y="2218"/>
         </scene>
@@ -502,20 +424,16 @@
         <image name="doneButton" width="51" height="27"/>
         <image name="feed_tab" width="27" height="27"/>
         <image name="home_feed-1" width="320" height="1438"/>
-        <image name="like_btn" width="17" height="40"/>
-        <image name="like_btn_selected" width="17" height="40"/>
         <image name="messages" width="320" height="460"/>
         <image name="messages_tab" width="27" height="27"/>
         <image name="more_tab" width="27" height="27"/>
         <image name="nav" width="320" height="64"/>
-        <image name="nav_back" width="320" height="64"/>
         <image name="notifications" width="320" height="818"/>
         <image name="notifications_tab" width="27" height="27"/>
         <image name="people" width="320" height="1006"/>
         <image name="photo_actions" width="320" height="44"/>
         <image name="requests_tab" width="27" height="27"/>
         <image name="settings" width="320" height="1800"/>
-        <image name="thrillist_detail" width="320" height="1203"/>
         <image name="wedding1" width="320" height="480"/>
         <image name="wedding2" width="480" height="320"/>
         <image name="wedding3" width="480" height="320"/>

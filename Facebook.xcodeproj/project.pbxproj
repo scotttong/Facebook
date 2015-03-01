@@ -99,11 +99,7 @@
 				190238D81A83492C007CA8FB /* Supporting Files */,
 				190238FA1A834D31007CA8FB /* FeedViewController.swift */,
 				1958558F1A9C53A600562F55 /* PhotoViewController.swift */,
-				190238FC1A834D3F007CA8FB /* RequestsViewController.swift */,
-				190238FE1A834D4B007CA8FB /* MessagesViewController.swift */,
-				190239001A834D63007CA8FB /* NotificationsViewController.swift */,
-				190239021A834D6E007CA8FB /* MoreViewController.swift */,
-				190239041A835797007CA8FB /* ThrillistDetailViewController.swift */,
+				1951AD9C1AA29B4700BD6E52 /* other swift files */,
 			);
 			path = Facebook;
 			sourceTree = "<group>";
@@ -131,6 +127,18 @@
 				190238EF1A83492C007CA8FB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1951AD9C1AA29B4700BD6E52 /* other swift files */ = {
+			isa = PBXGroup;
+			children = (
+				190238FC1A834D3F007CA8FB /* RequestsViewController.swift */,
+				190238FE1A834D4B007CA8FB /* MessagesViewController.swift */,
+				190239001A834D63007CA8FB /* NotificationsViewController.swift */,
+				190239021A834D6E007CA8FB /* MoreViewController.swift */,
+				190239041A835797007CA8FB /* ThrillistDetailViewController.swift */,
+			);
+			name = "other swift files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -8,30 +8,64 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: UIViewController, UIScrollViewDelegate {
 	
 	
+	@IBOutlet weak var doneButtonImage: UIImageView!
+	@IBOutlet weak var actionsBar: UIImageView!
+	
+	@IBOutlet weak var photoScrollView: UIScrollView!
 
 	@IBOutlet weak var zoomedInPhotoContainer: UIImageView!
+
+	
 	var fullSizeImage: UIImage!
+	var scrollMove: CGFloat!
+	var	scrollAlpha: CGFloat!
+	
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		zoomedInPhotoContainer.image = fullSizeImage
+		
+		photoScrollView.delegate = self
 
         // Do any additional setup after loading the view.
     }
+	
+	func scrollViewDidScroll(scrollView: UIScrollView!) {
+		scrollMove = photoScrollView.contentOffset.y
+		photoScrollView.backgroundColor = UIColor(white: 0, alpha: ((100-abs(scrollMove))/100))
+	}
+	
+	func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
+		doneButtonImage.hidden = true
+		actionsBar.hidden = true
+	}
+	
+	func scrollViewDidEndDragging(scrollView: UIScrollView!, willDecelerate decelerate: Bool) {
+		doneButtonImage.hidden = false
+		actionsBar.hidden = false
+		
+		// If we scroll more than the 100 points, perform the dismiss action
+		if (scrollMove > 100 || scrollMove < -100) {
+			dismissViewControllerAnimated(true, completion: nil)
+		} else {
+			photoScrollView.contentOffset.y = 0
+		}
+	}
+	
+	func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+		doneButtonImage.hidden = false
+		actionsBar.hidden = false
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-	@IBAction func onPan(sender: UIPanGestureRecognizer) {
-		println("panning")
-	}
-
+	
 	@IBAction func didPressDoneButton(sender: AnyObject) {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
